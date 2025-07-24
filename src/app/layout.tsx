@@ -1,5 +1,6 @@
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import { AuthProvider } from "@/context/AuthContext"; // <-- make sure this path is correct
 
 export const metadata = {
   title: "Instagram Clone",
@@ -14,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-black">
-        <main>{children}</main>
+        <NavBar />
+        <AuthProvider>
+          <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );
