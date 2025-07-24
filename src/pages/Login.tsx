@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,12 +25,13 @@ const Login: React.FC = () => {
 
       // Save token to localStorage (or cookie, depending on your approach)
       localStorage.setItem('token', data.token);
-
-      alert('Login successful!');
+      console.log("✅ Login successful, token:", data.token);
+      router.push('/');
       // Redirect to feed or dashboard here
     } catch (err) {
     if (err instanceof Error) {
         alert(err.message);
+
     } else {
         alert("An unknown error occurred.");
     }

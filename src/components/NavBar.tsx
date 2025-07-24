@@ -1,10 +1,18 @@
+'use client';
+
+import Link from 'next/link';
+
 export default function NavBar() {
   return (
-    <nav className="w-full h-16 border-b border-gray-200 flex items-center px-4 justify-between">
+    <nav className="w-full h-16 border-b border-gray-200 flex items-center px-4 justify-between">s
       <div className="text-xl font-bold">Instagram</div>
       <div className="flex gap-4">
-        <button className="text-sm hover:underline">Login</button>
-        <button className="text-sm hover:underline">Sign up</button>
+        <Link href="/login" className="text-sm hover:underline">
+          Login
+        </Link>
+        <Link href="/signup" className="text-sm hover:underline">
+          Sign up
+        </Link>
       </div>
     </nav>
   );
