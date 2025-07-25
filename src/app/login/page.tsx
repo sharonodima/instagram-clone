@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login: setAuthUser } = useAuth(); // renamed to avoid confusion with endpoint
+  const { login: setAuthUser } = useAuth(); // Save user + token
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -29,8 +29,11 @@ export default function LoginPage() {
         return;
       }
 
-      setAuthUser(data.user, data.token); // Save user and token in context
-      router.push("/"); // redirect to home or dashboard
+      // Save user and token in context
+      setAuthUser(data.user, data.token);
+
+      // ✅ Redirect to dynamic user page
+      router.push(`/user/${data.user.username}`);
     } catch (err) {
       console.error("Login error:", err);
       setError("Something went wrong");
